@@ -1,8 +1,10 @@
 # Packages installed on top of alpine-minirootfs.
 # Keep this list lean — gzipped rootfs target is < 15 MB.
 
-# Base + Alpine setup tooling (provides setup-alpine, setup-* helpers)
-alpine-base
+# Alpine setup tooling (provides setup-alpine, setup-* helpers).
+# Skip alpine-base on purpose — the miniroot already ships baselayout +
+# busybox + apk-tools + musl, and alpine-base mainly adds openrc which
+# iSH cannot use.
 alpine-conf
 
 # Editors
