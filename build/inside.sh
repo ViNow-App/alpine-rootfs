@@ -42,8 +42,11 @@ echo "   $PACKAGES"
 chroot "$TARGET" /sbin/apk update
 chroot "$TARGET" /sbin/apk add --no-cache $PACKAGES
 
-# Drop install-time DNS; consumers manage this at runtime.
-rm -f "$TARGET/etc/resolv.conf"
+# Ship default DNS so consumers have working resolution out of the box.
+cat > "$TARGET/etc/resolv.conf" <<EOF
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+EOF
 
 # Blank the MOTD shipped by the miniroot.
 : > "$TARGET/etc/motd"
