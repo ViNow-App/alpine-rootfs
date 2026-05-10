@@ -1,0 +1,45 @@
+# Packages installed on top of alpine-minirootfs.
+# Keep this list lean — gzipped rootfs target is < 15 MB.
+
+# Alpine setup tooling (provides setup-alpine, setup-* helpers).
+# Skip alpine-base on purpose — the miniroot already ships baselayout +
+# busybox + apk-tools + musl, and alpine-base mainly adds openrc which
+# we cannot use without a real init.
+alpine-conf
+
+# Editors
+nano
+vim
+
+# Day-to-day userland (replace busybox applets where it matters)
+coreutils
+findutils
+grep
+sed
+gawk
+less
+file
+tar
+gzip
+xz
+
+# Account management
+shadow
+
+# Crypto / TLS roots
+ca-certificates
+openssl
+tzdata
+
+# Networking
+curl
+wget
+openssh-client
+iproute2
+iputils
+bind-tools
+
+# VCS & process inspection
+git
+procps-ng
+htop
