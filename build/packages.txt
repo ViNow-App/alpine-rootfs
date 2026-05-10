@@ -7,6 +7,7 @@ alpine-conf
 
 # Editors
 nano
+vim
 
 # Day-to-day userland (replace busybox applets where it matters)
 coreutils
