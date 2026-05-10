@@ -1,5 +1,9 @@
 # Packages installed on top of alpine-minirootfs.
 # Keep this list lean — gzipped rootfs target is < 15 MB.
+#
+# Rule of thumb: if BusyBox already provides a usable applet
+# (cp/mv/ls/find/grep/sed/awk/less/tar/gzip/wget/ping/ip/ps/top/...), do
+# NOT install the standalone GNU/Alpine package just to duplicate it.
 
 # Alpine setup tooling (provides setup-alpine, setup-* helpers).
 # Skip alpine-base on purpose — the miniroot already ships baselayout +
@@ -7,23 +11,17 @@
 # we cannot use without a real init.
 alpine-conf
 
+# glibc-compat shim so glibc-linked binaries can run on musl.
+gcompat
+
 # Editors
 nano
 vim
 
-# Day-to-day userland (replace busybox applets where it matters)
-coreutils
-findutils
-grep
-sed
-gawk
-less
+# Userland gaps that BusyBox does not cover
 file
-tar
-gzip
-xz
 
-# Account management
+# Account management (useradd/usermod/etc. — busybox only has adduser)
 shadow
 
 # Crypto / TLS roots
@@ -31,15 +29,11 @@ ca-certificates
 openssl
 tzdata
 
-# Networking
+# Networking gaps (busybox has wget/ping/ip/nslookup but not curl/ssh/dig)
 curl
-wget
 openssh-client
-iproute2
-iputils
 bind-tools
 
-# VCS & process inspection
+# VCS & richer process inspection
 git
-procps-ng
 htop
