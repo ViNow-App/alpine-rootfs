@@ -8,6 +8,9 @@
 # glibc-compat shim so glibc-linked binaries can run on musl.
 gcompat
 
+# Shell
+bash
+
 # Editors
 nano
 vim
